@@ -104,7 +104,7 @@
             resultsTableBody.innerHTML = '';
 
             try {
-                const response = await fetch('http://localhost:3000/check-site-urls', {
+                const response = await fetch('http://localhost:3000/api/check-site-urls', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

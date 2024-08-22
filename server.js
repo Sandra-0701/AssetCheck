@@ -44,7 +44,7 @@ const getFinalRedirectUrl = async (url) => {
     }
 };
 
-app.post('/check-site-urls', async (req, res) => {
+app.post('/api/check-site-urls', async (req, res) => {
     const { siteUrl } = req.body;
     if (!siteUrl) {
         return res.status(400).json({ error: 'Site URL is required' });

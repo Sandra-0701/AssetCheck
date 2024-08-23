@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "api/server.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "maxDuration": 60 // Set to 60 seconds or as needed
+      }
     },
     {
       "src": "public/**/*",

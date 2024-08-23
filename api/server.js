@@ -4,6 +4,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 const app = express();
+const port = process.env.PORT || 3000; // Use environment port
 
 app.use(cors());
 app.use(express.json());
@@ -67,4 +68,6 @@ app.post('/api/check-site-urls', async (req, res) => {
     }
 });
 
-module.exports = app;  // Export the app as a module
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+});

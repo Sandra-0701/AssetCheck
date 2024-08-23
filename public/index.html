@@ -91,6 +91,7 @@
             </tr>
         </thead>
         <tbody>
+            
         </tbody>
     </table>
 
@@ -110,6 +111,11 @@
                     },
                     body: JSON.stringify({ siteUrl })
                 });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
                 const results = await response.json();
 
                 results.forEach(result => {

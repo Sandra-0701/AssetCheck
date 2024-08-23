@@ -12,7 +12,7 @@ app.use(express.json());
 const getAllUrlsFromPage = async (url) => {
     console.time('getAllUrlsFromPage');
     try {
-        const { data } = await axios.get(url, { timeout: 10000 }); // 10 seconds timeout
+        const { data } = await axios.get(url); // No timeout set
         const $ = cheerio.load(data);
         const urls = new Set();
 
@@ -36,8 +36,7 @@ const getFinalRedirectUrl = async (url) => {
     try {
         const response = await axios.get(url, {
             maxRedirects: 10,
-            validateStatus: status => status >= 200 && status < 400,
-            timeout: 10000 // 10 seconds timeout
+            validateStatus: status => status >= 200 && status < 400
         });
         console.timeEnd('getFinalRedirectUrl');
         return response.request.res.responseUrl;

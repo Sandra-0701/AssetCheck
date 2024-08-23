@@ -50,6 +50,7 @@ const getFinalRedirectUrl = async (url) => {
     }
 };
 
+
 app.post('/api/check-site-urls', async (req, res) => {
     const { siteUrl } = req.body;
     if (!siteUrl) {

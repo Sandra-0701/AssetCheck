@@ -4,7 +4,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 const app = express();
-const port = process.env.PORT || 3000; // Use environment port
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -49,7 +49,6 @@ const getFinalRedirectUrl = async (url) => {
         }
     }
 };
-
 
 app.post('/api/check-site-urls', async (req, res) => {
     const { siteUrl } = req.body;

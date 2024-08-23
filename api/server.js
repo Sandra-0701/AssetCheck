@@ -10,6 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 const getAllUrlsFromPage = async (url) => {
+    console.time('getAllUrlsFromPage');
     try {
         const { data } = await axios.get(url);
         const $ = cheerio.load(data);
@@ -22,20 +23,25 @@ const getAllUrlsFromPage = async (url) => {
                 urls.add(href);
             }
         });
+        console.timeEnd('getAllUrlsFromPage');
         return Array.from(urls);
     } catch (error) {
+        console.error('Error in getAllUrlsFromPage:', error.message);
         throw new Error(`Failed to fetch ${url}: ${error.message}`);
     }
 };
 
 const getFinalRedirectUrl = async (url) => {
+    console.time('getFinalRedirectUrl');
     try {
         const response = await axios.get(url, {
             maxRedirects: 10,
             validateStatus: status => status >= 200 && status < 400
         });
+        console.timeEnd('getFinalRedirectUrl');
         return response.request.res.responseUrl;
     } catch (error) {
+        console.error('Error in getFinalRedirectUrl:', error.message);
         if (error.response) {
             return error.response.request.res.responseUrl || 'No final URL found';
         } else {
